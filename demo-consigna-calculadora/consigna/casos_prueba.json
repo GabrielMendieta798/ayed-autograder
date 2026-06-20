@@ -1,0 +1,52 @@
+[
+  {
+    "descripcion": "Suma básica: 3 + 5",
+    "input": "3 + 5\n",
+    "expected_output": "8",
+    "check_type": "contains",
+    "timeout_seg": 5,
+    "points": 2,
+    "visibility": "public",
+    "explicacion": "Caso base de suma. Verifica que el programa lea los operandos y el operador correctamente."
+  },
+  {
+    "descripcion": "Resta: 10 - 3",
+    "input": "10 - 3\n",
+    "expected_output": "7",
+    "check_type": "contains",
+    "timeout_seg": 5,
+    "points": 2,
+    "visibility": "public",
+    "explicacion": "Verifica que el programa diferencie el operador - del operador +."
+  },
+  {
+    "descripcion": "Multiplicación: 4 * 6",
+    "input": "4 * 6\n",
+    "expected_output": "24",
+    "check_type": "contains",
+    "timeout_seg": 5,
+    "points": 2,
+    "visibility": "public",
+    "explicacion": "Verifica el operador de multiplicación."
+  },
+  {
+    "descripcion": "División exacta: 15 / 3",
+    "input": "15 / 3\n",
+    "expected_output": "5",
+    "check_type": "contains",
+    "timeout_seg": 5,
+    "points": 2,
+    "visibility": "public",
+    "explicacion": "División sin resto. Verifica el operador / con resultado entero."
+  },
+  {
+    "descripcion": "División por cero: 7 / 0",
+    "input": "7 / 0\n",
+    "expected_output": "Error: division por cero",
+    "check_type": "contains",
+    "timeout_seg": 5,
+    "points": 3,
+    "visibility": "public",
+    "explicacion": "Caso borde crítico. El programa no debe crashear ni dividir por cero. Debe imprimir el mensaje de error exacto."
+  }
+]

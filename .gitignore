@@ -1,0 +1,71 @@
+# Python
+
+**pycache**/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+build/
+
+# Secrets / env
+
+.env
+.env.*
+!.env.example
+
+# Database
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Node
+
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test / tooling artifacts
+
+.pytest_cache/
+.benchmarks/
+.hypothesis/
+htmlcov/
+.coverage
+coverage.xml
+
+# Editor
+
+.vscode/
+.idea/
+*.suo
+*.sw?
+.DS_Store
+
+# OS
+
+Thumbs.db
+
+# Compiled C artifacts
+
+*.out
+*.o
+*.exe
+
+# Student submissions
+
+*.zip
+*.rar
+
+# Claude Code (local, no subir)
+
+CLAUDE.md
+.claude/
+
+# Material interno de la cátedra
+framework_ayed.pdf
