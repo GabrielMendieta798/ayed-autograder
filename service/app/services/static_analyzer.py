@@ -1,8 +1,15 @@
 import re
-from app.models.models import CheckEstatico
+from typing import Protocol
 
 
-def run_static_checks(source_files: list[str], checks: list[CheckEstatico]) -> list[dict]:
+class StaticCheckConfig(Protocol):
+    descripcion: str
+    pattern: str
+    check_type: str
+    min_count: int
+
+
+def run_static_checks(source_files: list[str], checks: list[StaticCheckConfig]) -> list[dict]:
     source_code = ""
     for path in source_files:
         with open(path, "r", encoding="utf-8", errors="replace") as f:

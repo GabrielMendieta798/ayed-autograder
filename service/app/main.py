@@ -4,6 +4,7 @@ from app.api.routes import router
 from app.api.consignas import router as consignas_router
 from app.api.submissions import router as submissions_router
 from app.api.admin import router as admin_router
+from app.api.worker import router as worker_router
 from app.models.database import engine, Base
 from app.models import models  # noqa: F401 — registra las tablas en Base.metadata
 
@@ -26,6 +27,7 @@ app.include_router(router, prefix="/api")
 app.include_router(consignas_router, prefix="/api")
 app.include_router(submissions_router, prefix="/api")
 app.include_router(admin_router, prefix="/api")
+app.include_router(worker_router)
 
 
 @app.get("/health")
