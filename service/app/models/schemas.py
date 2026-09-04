@@ -11,6 +11,9 @@ class CompilationResult(BaseModel):
     success: bool
     errors: list[str]
     warnings: list[str]
+    stdout: str = ""
+    stderr: str = ""
+    exit_code: Optional[int] = None
 
 
 # ---------------------------------------------------------------------------

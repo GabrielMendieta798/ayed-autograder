@@ -54,6 +54,9 @@ def compile_c_files(source_files: list[str]) -> CompilationResult:
             success=result.returncode == 0,
             errors=errors,
             warnings=warnings,
+            stdout=result.stdout,
+            stderr=result.stderr,
+            exit_code=result.returncode,
         )
     except subprocess.TimeoutExpired:
         return CompilationResult(success=False, errors=["Timeout: la compilación tardó demasiado"], warnings=[])

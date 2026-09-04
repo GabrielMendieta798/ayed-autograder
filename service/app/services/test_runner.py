@@ -2,13 +2,21 @@ import subprocess
 import os
 import shutil
 import tempfile
-from app.models.models import CasoPrueba
+from typing import Protocol
 
 DOCKER_IMAGE = "gcc:latest"
 COMPILE_TIMEOUT = 30
 
 
-def run_tests(source_files: list[str], test_cases: list[CasoPrueba]) -> list[dict]:
+class TestCaseConfig(Protocol):
+    descripcion: str
+    input: str
+    expected_output: str
+    check_type: str
+    timeout_seg: int
+
+
+def run_tests(source_files: list[str], test_cases: list[TestCaseConfig]) -> list[dict]:
     c_files = [f for f in source_files if f.endswith(".c")]
 
     if not c_files:
@@ -48,7 +56,8 @@ def run_tests(source_files: list[str], test_cases: list[CasoPrueba]) -> list[dic
         )
 
         if compile_result.returncode != 0:
-            gcc_stderr = compile_result.stderr[:500] if compile_result.stderr else "El código no compiló"
+            gcc_detail = compile_result.stderr[:500] if compile_result.stderr else "Sin diagnostico de GCC"
+            gcc_stderr = f"El código no compiló:\n{gcc_detail}"
             return [{
                 "descripcion": caso.descripcion,
                 "passed": False,
