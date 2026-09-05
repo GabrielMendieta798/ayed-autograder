@@ -1,12 +1,14 @@
 import os
 import shutil
 import tempfile
+from dataclasses import asdict
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import ValidationError
 
 from app.worker.pipeline import run_worker_grade_job
 from app.worker.schemas import GradeRequest, GradeResult
+from app.worker.domain import GradeJob, WorkerStaticCheck, WorkerTestCase
 
 
 router = APIRouter()
@@ -31,7 +33,21 @@ async def grade(
         with open(archive_path, "wb") as destination:
             shutil.copyfileobj(archivo.file, destination)
         try:
-            return run_worker_grade_job(archive_path, request)
+            job = GradeJob(
+                job_id=request.job_id,
+                archive_path=archive_path,
+                tests=tuple(
+                    WorkerTestCase(**test.model_dump()) for test in request.tests
+                ),
+                static_checks=tuple(
+                    WorkerStaticCheck(**check.model_dump())
+                    for check in request.static_checks
+                ),
+            )
+            evidence = run_worker_grade_job(job)
+            result = asdict(evidence)
+            result["static_analysis"] = {"checks": result["static_analysis"]}
+            return GradeResult.model_validate(result)
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
     finally:
