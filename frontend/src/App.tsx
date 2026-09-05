@@ -13,7 +13,7 @@ export default function App() {
   const [consignas, setConsignas] = useState<ConsignaOption[]>([])
 
   function loadConsignas() {
-    fetch('http://localhost:8000/api/consignas')
+    fetch('/api/consignas')
       .then(r => r.json())
       .then((data: ConsignaOption[]) => setConsignas(data))
       .catch(() => setConsignas([]))

@@ -29,7 +29,7 @@ export default function UploadForm({ consignas, onResult, onLoading }: Props) {
 
     onLoading(true)
     try {
-      const res = await fetch('http://localhost:8000/api/submissions/analyze', {
+      const res = await fetch('/api/submissions/analyze', {
         method: 'POST',
         body: formData,
       })
