@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { ConsignaDetail, CasoPruebaOut, CheckEstaticoOut } from '../types'
 
-const API = 'http://localhost:8000/api'
+const API = '/api'
 
 // ---------------------------------------------------------------------------
 // Formulario: Consigna
